@@ -10,16 +10,32 @@
  
     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
         
-        <p:outputLabel for="" value="Grouping: " />
-        <p:selectOneMenu id="consoles" value="#{videoGames.carregarComboGames()}">
-            <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItems value="#{videoGames.carregarComboGames()}" var="games"  itemValue="" itemLabel="#{games.label}" />
+        <h:panelGroup>
+        <div>
+        <p:outputLabel value="Consoles: " />
+        <p:selectOneMenu value="#{videoGamesController.carregarComboGames()}">
+            <f:selectItem itemLabel="Select One"/>
+            <f:selectItems value="#{videoGamesController.carregarComboGames}" var="games"  itemValue="" itemLabel="#{games.label}" />
         </p:selectOneMenu>
- 
+ 		</div>
+ 		
+ 		<div><br />
+ 			<p:outputLabel value="Relação de jogos" />
+ 			<p:selectManyCheckbox value="#{videoGamesController.carregarComboJogos()}">
+ 			<f:selectItems value="#{videoGamesController.carregarComboJogos()}" var="games" itemValue="" itemLabel="#{games.label}"/>
+ 			</p:selectManyCheckbox>
+ 		</div>
+ 		
+ 		<div><br />
+ 			<p:outputLabel value="Aluguel de jogos" />
+ 			<h:selectOneRadio value="#{videoGamesController.carregarComboAluguel()}">
+ 			<f:selectItems value="#{videoGamesController.carregarComboAluguel()}" var="aluguel" itemLabel="#{aluguel.label}" />
+ 			</h:selectOneRadio>
+ 		</div><br />
      
  
-    <p:commandButton value="Submit" />
-
+    	<p:commandButton value="Submit" />
+		</h:panelGroup>
     </h:panelGrid>
 </h:form>
 	</h:body>
