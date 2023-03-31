@@ -10,13 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import crud.enuns.StatusPagamento;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "pagamento_boleto")
 public class PagamentoBoleto {

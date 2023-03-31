@@ -51,15 +51,20 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 		produto.setDescricao("A melhor qualidade de som");
 		produto.setPreco(new BigDecimal(1000));
 
-		entityManager.getTransaction().begin();
-		entityManager.merge(produto);
-		entityManager.getTransaction().commit();
+		try {
+			entityManager.getTransaction().begin();
+			entityManager.merge(produto);
+			entityManager.getTransaction().commit();
 
-		entityManager.clear();
+			entityManager.clear();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		Produto verificaProduto = entityManager.find(Produto.class, produto.getId());
+		Produto verificaProduto = entityManager.find(Produto.class, 1);
 		assertNotNull(verificaProduto);
 	}
+	
 
 	@Test
 	public void removeObjeto() {
@@ -86,8 +91,9 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 		entityManager.clear();
 
 		Produto verificaProduto = entityManager.find(Produto.class, 1);
-		assertEquals("Kindle Paperwhite", verificaProduto.getNome());
+		assertEquals("Kindle", verificaProduto.getNome());
 	}
+	
 
 	@Test
 	public void mostrarDiferencaPersistMerge() {

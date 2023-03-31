@@ -1,5 +1,7 @@
 package crud.relacionamentos;
 
+import static org.junit.Assert.assertNull;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,6 +24,6 @@ public class RemovendoEntidadesReferenciadasTest extends EntityManagerTest {
         entityManager.clear();
 
         Pedido pedidoVerificacao = entityManager.find(Pedido.class, 1);
-        Assert.assertNull(pedidoVerificacao);
+        assertNull(pedidoVerificacao);
     }
 }
