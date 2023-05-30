@@ -1,14 +1,14 @@
 package crud.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,23 +26,25 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "item_pedido")
-public class ItemPedido {
+public class ItemPedido implements Serializable {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	private static final long serialVersionUID = 1L;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+	@EmbeddedId
+	private ItemPedidoId id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
+	@MapsId("pedidoId")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "pedido_id")
+	private Pedido pedido;
 
-    @Column(name = "preco_produto")
-    private BigDecimal precoProduto;
+	@MapsId("produtoId")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "produto_id")
+	private Produto produto;
 
-    private Integer quantidade;
+	@Column(name = "preco_produto")
+	private BigDecimal precoProduto;
+
+	private Integer quantidade;
 }

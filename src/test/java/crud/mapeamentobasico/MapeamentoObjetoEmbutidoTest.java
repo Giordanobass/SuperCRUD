@@ -15,6 +15,7 @@ import crud.enuns.StatusPedido;
 import crud.model.Cliente;
 import crud.model.EnderecoEntregaPedido;
 import crud.model.ItemPedido;
+import crud.model.ItemPedidoId;
 import crud.model.NotaFiscal;
 import crud.model.PagamentoCartao;
 import crud.model.Pedido;
@@ -46,6 +47,7 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
 
 		List<ItemPedido> listaItemPedido = new ArrayList<>();
 		ItemPedido item = new ItemPedido();
+		item.setId(new ItemPedidoId());
 		item.setPedido(pedido);
 		item.setProduto(produto);
 		item.setPrecoProduto(new BigDecimal(10.234));
@@ -63,14 +65,16 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
 		pagamentoCartao.setNumero("AB123456");
 
 		Pedido pedido2 = new Pedido();
+		pedido2.setId(3);
 		pedido2.setCliente(cliente);
 		pedido2.setItens(listaItemPedido);
 		pedido2.setDataCriacao(LocalDateTime.now());
 		pedido2.setDataConclusao(LocalDateTime.parse("2022-12-03T10:15:30"));
+		pedido2.setDataUltimaAtualizacao(LocalDateTime.now());
 		pedido2.setNotaFiscal(notaFiscal);
 		pedido2.setTotal(new BigDecimal(1000));
 		pedido2.setStatus(StatusPedido.AGUARDANDO);
-		pedido2.setPagamento(pagamentoCartao);
+		pedido2.setPagamentoCartao(pagamentoCartao);
 		pedido2.setEnderecoEntrega(entregaPedido);
 
 		entityManager.getTransaction().begin();

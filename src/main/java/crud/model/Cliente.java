@@ -1,5 +1,6 @@
 package crud.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import crud.enuns.SexoCliente;
 import lombok.AllArgsConstructor;
@@ -27,18 +30,33 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements Serializable {
 
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	private static final long serialVersionUID = 1L;
 
-    private String nome;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Enumerated(EnumType.STRING)
-    private SexoCliente sexo;
+	private String nome;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Pedido> pedidos;
+	@Transient
+	private String primeiroNome;
+
+	@Enumerated(EnumType.STRING)
+	private SexoCliente sexo;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
+
+	@PostLoad
+	public void configurarPrimeiroNome() {
+		if (nome != null && !nome.isBlank()) {
+			int index = nome.indexOf(" ");
+			if (index > -1) {
+				primeiroNome = nome.substring(0, index);
+			}
+		}
+	}
 }

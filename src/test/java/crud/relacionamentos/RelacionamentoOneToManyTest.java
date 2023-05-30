@@ -10,6 +10,7 @@ import crud.entitymanager.EntityManagerTest;
 import crud.enuns.StatusPedido;
 import crud.model.Cliente;
 import crud.model.ItemPedido;
+import crud.model.ItemPedidoId;
 import crud.model.Pedido;
 import crud.model.Produto;
 
@@ -48,10 +49,11 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest {
         pedido.setCliente(cliente);
 
         ItemPedido itemPedido = new ItemPedido();
-        itemPedido.setPrecoProduto(produto.getPreco());
-        itemPedido.setQuantidade(1);
-        itemPedido.setPedido(pedido);
-        itemPedido.setProduto(produto);
+		itemPedido.setId(new ItemPedidoId());
+		itemPedido.setPedido(pedido);
+		itemPedido.setProduto(produto);
+		itemPedido.setPrecoProduto(produto.getPreco());
+		itemPedido.setQuantidade(1);
 
         entityManager.getTransaction().begin();
         entityManager.persist(pedido);

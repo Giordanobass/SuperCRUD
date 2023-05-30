@@ -1,5 +1,6 @@
 package crud.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,14 +28,16 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners({ GenericoListener.class })
 @Entity
 @Table(name = "produto")
-public class Produto {
+public class Produto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @EqualsAndHashCode.Include

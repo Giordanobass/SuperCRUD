@@ -23,7 +23,7 @@ public class FlushTest extends EntityManagerTest {
 //			entityManager.flush(); 
 			
 			
-			if(pedido.getPagamento() == null) {
+			if(pedido.getPagamentoCartao() == null) {
 				throw new RuntimeException("Pedido ainda não foi pago.");
 			}
 			

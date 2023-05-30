@@ -5,9 +5,10 @@ import org.junit.Test;
 import crud.entitymanager.EntityManagerTest;
 import crud.model.Categoria;
 
+@SuppressWarnings("unused")
 public class EstadosECicloDeVidaTest extends EntityManagerTest {
 
-    @Test
+	@Test
     public void analisarEstados() {
         Categoria categoriaNovo = new Categoria();
 

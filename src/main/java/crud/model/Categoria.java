@@ -1,5 +1,6 @@
 package crud.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,9 +28,11 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "categoria")
-public class Categoria {
+public class Categoria implements Serializable {
 
-    @EqualsAndHashCode.Include
+    private static final long serialVersionUID = 1L;
+
+	@EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

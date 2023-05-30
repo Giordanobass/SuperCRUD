@@ -2,6 +2,7 @@ package crud.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
@@ -18,21 +19,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class EnderecoEntregaPedido implements Serializable {
+public class ItemPedidoId implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+	@EqualsAndHashCode.Include
+    @Column(name = "pedido_id")
+    private Integer pedidoId;
 
-	private String cep;
-
-    private String logradouro;
-
-    private String numero;
-
-    private String complemento;
-
-    private String bairro;
-
-    private String cidade;
-
-    private String estado;
+    @EqualsAndHashCode.Include
+    @Column(name = "produto_id")
+    private Integer produtoId;
+	
 }

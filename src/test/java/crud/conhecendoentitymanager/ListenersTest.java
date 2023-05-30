@@ -16,8 +16,8 @@ public class ListenersTest extends EntityManagerTest {
 	public void carregarEntidades() {
 		Produto produto = entityManager.find(Produto.class, 1);
 		Pedido pedido = entityManager.find(Pedido.class, 1);
-		System.out.println(produto);
-		System.out.println(pedido);
+		assertNotNull(pedido);
+		assertNotNull(produto);
 	}
 
 	@Test
